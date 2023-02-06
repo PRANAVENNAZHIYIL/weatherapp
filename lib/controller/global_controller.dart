@@ -8,6 +8,7 @@ class GlobalController extends GetxController {
   final RxBool _isloading = true.obs;
   final RxDouble _latitude = 0.0.obs;
   final RxDouble _longitude = 0.0.obs;
+  final RxInt _currentindex = 0.obs;
 
 //instance for them to be called
   RxBool checkLoading() => _isloading;
@@ -22,6 +23,8 @@ class GlobalController extends GetxController {
   void onInit() {
     if (_isloading.isTrue) {
       getlocation();
+    } else {
+      getIndex();
     }
     super.onInit();
   }
@@ -50,7 +53,10 @@ class GlobalController extends GetxController {
         .then((value) {
       //updtae latitude and longitude
       _latitude.value = value.latitude;
+      print(value.latitude);
       _longitude.value = value.longitude;
+      print(value.longitude);
+
       //calling our weather api
       return FetchWeatherAPI()
           .processData(value.latitude, value.longitude)
@@ -59,5 +65,9 @@ class GlobalController extends GetxController {
         _isloading.value = false;
       });
     });
+  }
+
+  RxInt getIndex() {
+    return _currentindex;
   }
 }

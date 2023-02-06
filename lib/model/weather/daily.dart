@@ -1,6 +1,6 @@
+import '../weather_data_current.dart';
 import 'feels_like.dart';
 import 'temp.dart';
-import 'weather.dart';
 
 class Daily {
   int? dt;

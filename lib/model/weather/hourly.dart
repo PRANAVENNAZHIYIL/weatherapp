@@ -1,4 +1,4 @@
-import 'weather.dart';
+import '../weather_data_current.dart';
 
 class Hourly {
   int? dt;
